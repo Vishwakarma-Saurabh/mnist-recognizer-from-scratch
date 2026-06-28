@@ -13,7 +13,7 @@ class Tester:
         y_one_hot = self.data_loader.one_hot_encode(y)
         
         # Forward pass
-        y_pred = self.model.forward(X, training=False)
+        self.model.forward(X, training=False)
         
         # Get analytical gradients
         grads = self.model.backward(y_one_hot, l2_lambda=0)

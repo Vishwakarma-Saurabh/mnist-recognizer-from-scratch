@@ -1,8 +1,5 @@
-# train.py
 import numpy as np
 from config import Config
-from neural_network import NeuralNetwork
-from utils import DataLoader, Visualizer
 
 class Trainer:
     def __init__(self, model, data_loader):

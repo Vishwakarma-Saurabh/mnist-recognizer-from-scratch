@@ -1,4 +1,3 @@
-# main.py
 import numpy as np
 from config import Config
 from neural_network import NeuralNetwork

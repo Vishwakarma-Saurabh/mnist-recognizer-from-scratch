@@ -1,6 +1,4 @@
-# neural_network.py
 import numpy as np
-from config import Config
 
 class NeuralNetwork:
     def __init__(self, input_size, hidden_size, output_size):

@@ -1,9 +1,7 @@
-# utils.py
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 
 class DataLoader:
     def __init__(self):
@@ -69,14 +67,7 @@ class DataLoader:
 class Visualizer:
     @staticmethod
     def show_sample_images(X, y, num_samples=10):
-        """
-        Display sample digits with their labels
-        
-        Concept: 
-        - Visual inspection of data before training
-        - Helps identify data quality issues
-        - Understanding what model needs to learn
-        """
+
         fig, axes = plt.subplots(2, 5, figsize=(12, 6))
         axes = axes.ravel()
         

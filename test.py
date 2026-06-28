@@ -1,7 +1,5 @@
-# test.py
 import numpy as np
 from config import Config
-from neural_network import NeuralNetwork
 
 class Tester:
     def __init__(self, model, data_loader):

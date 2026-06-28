@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
+from config import Config
 
 class DataLoader:
     def __init__(self):
@@ -29,13 +30,13 @@ class DataLoader:
         # Split: Training + Validation + Test
         # First split: Test set (20%)
         X_temp, X_test, y_temp, y_test = train_test_split(
-            X, y, test_size=test_size, random_state=42, stratify=y
+            X, y, test_size=test_size, random_state=Config.RANDOM_SEED, stratify=y
         )
         
         # Second split: Training (70%) and Validation (10%)
         val_ratio = val_size / (1 - test_size)  # Calculate validation ratio
         X_train, X_val, y_train, y_val = train_test_split(
-            X_temp, y_temp, test_size=val_ratio, random_state=42, stratify=y_temp
+            X_temp, y_temp, test_size=val_ratio, random_state=Config.RANDOM_SEED, stratify=y_temp
         )
         
         # Store data
@@ -51,7 +52,11 @@ class DataLoader:
     
     def get_batch(self, X, y, batch_size):
         n_samples = X.shape[0]
-        indices = np.random.permutation(n_samples)  # Shuffle
+
+        if Config.rng is None:
+            Config.set_seed()
+            
+        indices = Config.rng.permutation(n_samples)  # Shuffle
         
         for start_idx in range(0, n_samples, batch_size):
             end_idx = min(start_idx + batch_size, n_samples)

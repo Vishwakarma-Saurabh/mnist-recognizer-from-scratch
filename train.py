@@ -13,54 +13,30 @@ class Trainer:
         }
     
     def train_epoch(self, X_train, y_train, X_val, y_val):
-        n_samples = X_train.shape[0]
-        
-        # Convert labels to one-hot
-        y_train_one_hot = self.data_loader.one_hot_encode(y_train)
-        
-        # Shuffle and create mini-batches
-        indices = np.random.permutation(n_samples)
-        X_shuffled = X_train[indices]
-        y_shuffled = y_train_one_hot[indices]
-        
-        total_batches = int(np.ceil(n_samples / Config.BATCH_SIZE))
-        
-        for batch_idx in range(total_batches):
-            start = batch_idx * Config.BATCH_SIZE
-            end = min(start + Config.BATCH_SIZE, n_samples)
+            y_train_one_hot = self.data_loader.one_hot_encode(y_train)
             
-            X_batch = X_shuffled[start:end]
-            y_batch = y_shuffled[start:end]
+            for X_batch, y_batch_labels in self.data_loader.get_batch(X_train, y_train, Config.BATCH_SIZE):
+                # One-hot encode just the mini-batch labels for the backward calculation
+                y_batch_one_hot = self.data_loader.one_hot_encode(y_batch_labels)
+                
+                self.model.forward(X_batch, training=True, dropout_rate=Config.DROPOUT_RATE)
+                
+                # Backward pass & parameter optimization
+                gradients = self.model.backward(y_batch_one_hot, l2_lambda=Config.L2_LAMBDA)
+                self.model.update_params(gradients, learning_rate=Config.LEARNING_RATE)
             
-            # Forward pass
-            y_pred = self.model.forward(X_batch, training=True, 
-                                      dropout_rate=Config.DROPOUT_RATE)
+            # Evaluate performance at the end of the epoch (Inference mode: training=False)
+            y_pred_train = self.model.forward(X_train, training=False)
+            y_pred_val = self.model.forward(X_val, training=False)
             
-            # Backward pass
-            gradients = self.model.backward(y_batch, l2_lambda=Config.L2_LAMBDA)
+            train_loss = self.model.compute_loss(y_train_one_hot, y_pred_train, l2_lambda=Config.L2_LAMBDA)
+            val_loss = self.model.compute_loss(self.data_loader.one_hot_encode(y_val), y_pred_val, l2_lambda=Config.L2_LAMBDA)
             
-            # Update weights
-            self.model.update_params(gradients, learning_rate=Config.LEARNING_RATE)
-        
-        # Evaluate after epoch
-        y_pred_train = self.model.forward(X_train, training=False)
-        y_pred_val = self.model.forward(X_val, training=False)
-        
-        train_loss = self.model.compute_loss(
-            self.data_loader.one_hot_encode(y_train), 
-            y_pred_train, 
-            l2_lambda=Config.L2_LAMBDA
-        )
-        val_loss = self.model.compute_loss(
-            self.data_loader.one_hot_encode(y_val), 
-            y_pred_val, 
-            l2_lambda=Config.L2_LAMBDA
-        )
-        train_acc = self.model.accuracy(X_train, y_train)
-        val_acc = self.model.accuracy(X_val, y_val)
-        
-        return train_loss, val_loss, train_acc, val_acc
-    
+            train_acc = self.model.accuracy(X_train, y_train)
+            val_acc = self.model.accuracy(X_val, y_val)
+            
+            return train_loss, val_loss, train_acc, val_acc
+      
     def train(self, X_train, y_train, X_val, y_val, epochs=50):
         print("Starting training...")
         print("-" * 60)

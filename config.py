@@ -21,6 +21,8 @@ class Config:
     VALIDATION_SPLIT = 0.1
     RANDOM_SEED = 42
 
-    @staticmethod
-    def set_seed():
-        np.random.seed(Config.RANDOM_SEED)
+    rng = None
+
+    @classmethod
+    def set_seed(cls):
+        cls.rng = np.random.default_rng(seed=cls.RANDOM_SEED)

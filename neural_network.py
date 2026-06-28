@@ -1,18 +1,20 @@
 import numpy as np
+from config import Config
 
 class NeuralNetwork:
-    def __init__(self, input_size, hidden_size, output_size):
+    def __init__(self, input_size=Config.INPUT_SIZE, hidden_size=Config.HIDDEN_SIZE, output_size=Config.OUTPUT_SIZE, rng=None):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
+        self.rng = rng if rng is not None else Config.rng
         
         # Weight Initialization (Xavier/Glorot)
         # W1: Input to Hidden
-        self.W1 = np.random.randn(input_size, hidden_size) * np.sqrt(2.0 / input_size)
+        self.W1 = self.rng.standard_normal((input_size, hidden_size)) * np.sqrt(2.0 / input_size)
         self.b1 = np.zeros((1, hidden_size))
         
         # W2: Hidden to Output
-        self.W2 = np.random.randn(hidden_size, output_size) * np.sqrt(2.0 / hidden_size)
+        self.W2 = self.rng.standard_normal((hidden_size, output_size)) * np.sqrt(2.0 / hidden_size)
         self.b2 = np.zeros((1, output_size))
         
         # Store intermediate values for backpropagation
@@ -44,7 +46,7 @@ class NeuralNetwork:
         
         # Dropout (only during training)
         if training:
-            dropout_mask = (np.random.rand(*A1.shape) > dropout_rate) / (1 - dropout_rate)
+            dropout_mask = (self.rng.random(*A1.shape) > dropout_rate) / (1 - dropout_rate)
             A1 = A1 * dropout_mask
         else:
             dropout_mask = np.ones_like(A1)

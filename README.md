@@ -1,110 +1,80 @@
-# 🧠 MNIST Handwritten Digit Recognizer
-
-> A 2-layer neural network built from scratch using only NumPy
-
-## 🎯 What is this?
-
-This project implements a neural network to recognize handwritten digits (0-9) from the MNIST dataset. **No TensorFlow, PyTorch, or any deep learning frameworks** - just pure NumPy!
-
-## 📁 Project Structure
-mnist_recognizer/
-├── config.py # Hyperparameters (learning rate, batch size, etc.)
-├── neural_network.py # Core NN: forward/backward propagation
-├── utils.py # Data loading and visualization
-├── train.py # Training loop
-├── main.py # Run everything
-└── requirements.txt # Dependencies
+\# Deep Learning Projects Portfolio
 
 
-## 🚀 Quick Start
 
-# 1. Clone the repo
-git clone https://github.com/Vishwakarma-Saurabh/mnist-recognizer.git
-cd mnist-recognizer
+A curated collection of deep learning projects building from foundational concepts to advanced architectures.
 
-# 2. Install dependencies
-pip install -r requirements.txt
 
-# 3. Train the model
-python main.py
 
-📊 What you'll see
-Loading MNIST dataset...
-Training set: 49,000 samples
-Test set: 14,000 samples
+\## 📁 Projects
 
-Network Architecture:
-  Input: 784 neurons
-  Hidden: 128 neurons  
-  Output: 10 neurons
 
-Epoch 1: Train Acc: 86.71%, Val Acc: 86.39%
-Epoch 10: Train Acc: 93.60%, Val Acc: 93.39%
-Epoch 50: Train Acc: 97.44%, Val Acc: 96.47%
 
-Test Accuracy: 96.46% ✅
+\### ✅ \[01 - Neural Network From Scratch](./01-neural-network-from-scratch)
 
-🔧 Customize
-Edit config.py to change:
-HIDDEN_SIZE: Number of hidden neurons
-LEARNING_RATE: Learning speed
-BATCH_SIZE: Mini-batch size
-EPOCHS: Training iterations
-DROPOUT_RATE: Dropout probability
+Built a 2-layer neural network using only NumPy to classify MNIST digits.
 
-🧪 Test your own digit
-from neural_network import NeuralNetwork
-import numpy as np
+\- \*\*Concepts:\*\* Forward/Backward propagation, Gradient descent, Manual backprop
 
-# Load trained model
-model = NeuralNetwork(784, 128, 10)
-# ... load weights ...
+\- \*\*Tech:\*\* Python, NumPy, Matplotlib
 
-# Predict your digit (28x28 grayscale image)
-your_digit = np.array(...).reshape(1, -1) / 255.0
-prediction = model.predict(your_digit)
-print(f"Predicted: {prediction[0]}")
 
-📝 Requirements
-Python 3.8+
-NumPy
-Matplotlib
-scikit-learn
-pandas (indirecly, required in other dependencies)
 
-🤔 Why from scratch?
-Building from scratch helps you understand:
+\### 🚧 02 - Training Techniques \*(Coming Soon)\*
 
-How forward/backward propagation actually works
+Batch Normalization, Learning Rate Schedules, Early Stopping
 
-Why weight initialization matters
 
-What happens during gradient descent
 
-The math behind neural networks
+\### 🚧 03 - CNN \& Transfer Learning \*(Coming Soon)\*
 
-📚 Key Concepts Implemented
-✅ Forward propagation with ReLU & Softmax
+Custom CNNs, Grad-CAM visualization
 
-✅ Backpropagation with chain rule
 
-✅ Mini-batch gradient descent
 
-✅ Xavier weight initialization
+\### 🚧 04 - Sequence Models \& NLP \*(Coming Soon)\*
 
-✅ L2 regularization
+Sentiment Analysis, Text Generation with LSTM
 
-✅ Dropout
 
-✅ Cross-entropy loss
 
-✅ Gradient checking
+\### 🚧 05 - Generative Models \*(Coming Soon)\*
 
-📈 Results
-Dataset	Accuracy
-Training	~97%
-Validation	~96%
-Test	~95%
+VAE, GAN, Diffusion Models
 
-📄 License
-MIT License - feel free to use and modify!
+
+
+\### 🚧 06 - Image Captioning \*(Coming Soon)\*
+
+CNN + LSTM with Attention (Capstone)
+
+
+
+\## 🛠️ Tech Stack
+
+\- \*\*Languages:\*\* Python
+
+\- \*\*Libraries:\*\* NumPy, PyTorch, TensorFlow/Keras
+
+\- \*\*Tools:\*\* Jupyter, Matplotlib, Git
+
+
+
+\## 📊 Project Progress
+
+| # | Project | Status |
+
+|---|---------|--------|
+
+| 01 | Neural Network From Scratch | ✅ Complete |
+
+| 02 | Training Techniques | ⬜ Not Started |
+
+| 03 | CNN \& Transfer Learning | ⬜ Not Started |
+
+| 04 | Sequence Models \& NLP | ⬜ Not Started |
+
+| 05 | Generative Models | ⬜ Not Started |
+
+| 06 | Image Captioning (Capstone) | ⬜ Not Started |
+

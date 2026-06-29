@@ -1,22 +1,108 @@
+# ============================================================
 # Python
+# ============================================================
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.so
+*$py.class
+
+# Distribution / packaging
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ============================================================
+# Virtual Environments (PER PROJECT)
+# ============================================================
+
+# Python virtual environment
+.venv/
 venv/
 env/
-*.pth
-*.h5
-*.hdf5
+ENV/
+.venv*/
+02-training-techniques/.venv/
+**/__pycache__/
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
+# ============================================================
+# IDEs
+# ============================================================
 
-# IDE
+# VS Code
 .vscode/
-.idea/
+*.code-workspace
 
-# OS
-.DS_Store
-Thumbs.db
+# ============================================================
+# Project Specific
+# ============================================================
+
+# Model checkpoints and saved models
+*.pth
+*.pt
+*.h5
+*.pb
+*.pkl
+*.pickle
+*.joblib
+
+# Data files
+*.npy
+*.npz
+*.mat
+
+# Logs
+logs/
+*.log
+*.out
+
+# Output directories
+output/
+results/
+checkpoints/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Environment variables
+.env
+.env.local
+
+# ============================================================
+# Testing & Coverage
+# ============================================================
+
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+
+# ============================================================
+# Jupyter Notebooks
+# ============================================================
+
+.ipynb_checkpoints/
+
+# ============================================================
+# Database files
+# ============================================================
+
+*.db
+*.sqlite
+*.sqlite3

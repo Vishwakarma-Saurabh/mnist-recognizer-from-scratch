@@ -20,13 +20,13 @@ Built a 2-layer neural network using only NumPy to classify MNIST digits.
 
 
 
-\### 🚧 02 - Training Techniques \*(Coming Soon)\*
+\### ✅ 02 - Training Techniques \*(./02-training-techniques)\*
 
 Batch Normalization, Learning Rate Schedules, Early Stopping
 
 
 
-\### 🚧 03 - CNN \& Transfer Learning \*(Coming Soon)\*
+\### ✅ 03 - CNN \& Transfer Learning \*(./03-cnn-from-scratch)\*
 
 Custom CNNs, Grad-CAM visualization
 

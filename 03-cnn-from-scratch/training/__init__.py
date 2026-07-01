@@ -1,0 +1,8 @@
+"""
+Training package for model training logic
+"""
+from .trainer import Trainer
+
+__all__ = [
+    'Trainer'
+]
